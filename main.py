@@ -3,7 +3,7 @@ from PIL import ImageTk, Image
 
 class TreeNode:
     def __init__(self, text, option_text1, option_text2, image_path, points_left, points_right, left=None, right=None):
-        self.text = text
+        self.text = text                  # Text for current Node
         self.option_text1 = option_text1  # Text for choice 1
         self.option_text2 = option_text2  # Text for choice 2
         self.image_path = image_path      # Image path
@@ -11,7 +11,6 @@ class TreeNode:
         self.points_right = points_right  # Points for choice 2
         self.left = left                  # Left child
         self.right = right                # Right child
-
 
 class DatingSimulator:
     def __init__(self, root_node):
@@ -31,10 +30,10 @@ class DatingSimulator:
         self.text_label.pack(pady=20)
 
         self.choice1_button = tk.Button(self.window, text="", command=self.make_choice1, font=("Arial", 12))
-        self.choice1_button.pack(side=tk.LEFT, pady=10)
+        self.choice1_button.pack(side=tk.LEFT, expand=1, pady=10)
 
         self.choice2_button = tk.Button(self.window, text="", command=self.make_choice2, font=("Arial", 12))
-        self.choice2_button.pack(side=tk.RIGHT, pady=10)
+        self.choice2_button.pack(side=tk.RIGHT, expand=1, pady=10)
 
         self.update_display()  # Initialize display
 
@@ -70,12 +69,10 @@ class DatingSimulator:
             self.choice1_button.config(text=self.current_node.option_text1)
             self.choice2_button.config(text=self.current_node.option_text2)
 
-
-
     def display_outcome(self):
+        # TODO: Add dynamic outcome based on attraction_score value
         # Display the final outcome
         self.text_label.config(text=f"{self.current_node.text}\n\nFinal Attraction Score: {self.attraction_score}")
-        # self.image_label.config(image="")  # Clear image
         image = ImageTk.PhotoImage(Image.open(self.current_node.image_path))
         self.image_label.config(image=image)
         self.image_label.image = image  # Keep reference to avoid garbage collection
