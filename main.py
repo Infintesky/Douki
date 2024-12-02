@@ -85,22 +85,22 @@ class DatingSimulator:
 
 def main():
     # Leaf nodes (Outcomes)
-    outcome1 = TreeNode("You ended up alone, but happy.", None, None, "./images/1.png", 0, 0)
-    outcome2 = TreeNode("You found true love!", None, None, "./images/1.png", 0, 0)
-    outcome3 = TreeNode("You became best friends instead.", None, None, "./images/1.png", 0, 0)
-    outcome4 = TreeNode("You decided to focus on your career.", None, None, "./images/1.png", 0, 0)
+    outcome1 = TreeNode("You ended up alone, but happy.", None, None, "./images/4.jpg", 0, 0)
+    outcome2 = TreeNode("You found true love!", None, None, "./images/4.jpg", 0, 0)
+    outcome3 = TreeNode("You became best friends instead.", None, None, "./images/4.jpg", 0, 0)
+    outcome4 = TreeNode("You decided to focus on your career.", None, None, "./images/4.jpg", 0, 0)
 
     # Intermediate questions
     q2 = TreeNode(
         "Do you prefer staying in or going out?",
         "Stay in", "Go out",
-        "./images/2.png", 2, -1,
+        "./images/3.jpg", 2, -1,
         outcome1, outcome2
     )
     q3 = TreeNode(
         "Would you compromise on hobbies?",
         "Yes", "No",
-        "./images/2.png", 1, 2,
+        "./images/2.jpg", 1, 2,
         outcome3, outcome4
     )
 
@@ -108,7 +108,7 @@ def main():
     root = TreeNode(
         "Do you value looks or personality more?",
         "Looks", "Personality",
-        "./images/1.png", 3, -2,
+        "./images/1.jpg", 3, -2,
         q2, q3
     )
 
