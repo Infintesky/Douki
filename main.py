@@ -14,7 +14,6 @@ class TreeNode:
 
 class DatingSimulator:
     def __init__(self, root_node):
-        self.root_node = root_node
         self.current_node = root_node
         self.attraction_score = 0  # Initialize attraction score
 
