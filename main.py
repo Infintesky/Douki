@@ -13,28 +13,99 @@ class TreeNode:
         self.right = right                # Right child
 
 class DatingSimulator:
-    def __init__(self, root_node):
-        self.current_node = root_node
+    def __init__(self):
+        self.current_node = self.create_binary_tree()
         self.attraction_score = 0  # Initialize attraction score
 
         # Set up Tkinter window
         self.window = tk.Tk()
         self.window.title("Dating Simulator")
 
-        # Create widgets
-        self.image_label = tk.Label(self.window)
+        # Create frames
+        self.title_frame = tk.Frame(self.window)
+        self.game_frame = tk.Frame(self.window)
+
+        self.setup_title_screen()
+        self.setup_game_screen()
+
+        self.title_frame.pack()  # Start with the title screen
+
+    def create_binary_tree(self):
+        # Leaf nodes (Outcomes)
+        outcome1 = TreeNode(
+            "You ended up alone, but happy.", 
+            None, None, 
+            "./images/4.jpg", 0, 0
+        )
+        outcome2 = TreeNode(
+            "You found true love!", 
+            None, None, 
+            "./images/4.jpg", 0, 0
+        )
+        outcome3 = TreeNode(
+            "You became best friends instead.", 
+            None, None, 
+            "./images/4.jpg", 0, 0
+        )
+        outcome4 = TreeNode(
+            "You decided to focus on your career.", 
+            None, None, 
+            "./images/4.jpg", 0, 0
+        )
+
+        # Intermediate questions
+        q2 = TreeNode(
+            "Do you prefer staying in or going out?",
+            "Stay in", "Go out",
+            "./images/3.jpg", 2, -1,
+            outcome1, outcome2
+        )
+        q3 = TreeNode(
+            "Would you compromise on hobbies?",
+            "Yes", "No",
+            "./images/2.jpg", 1, 2,
+            outcome3, outcome4
+        )
+
+        # Root question
+        root = TreeNode(
+            "Do you value looks or personality more?",
+            "Looks", "Personality",
+            "./images/1.jpg", 3, -2,
+            q2, q3
+        )
+
+        return root
+
+
+    def setup_title_screen(self):
+        # Title label
+        title_label = tk.Label(self.title_frame, text="Welcome to Dating Simulator", font=("Arial", 24))
+        title_label.pack(pady=20)
+
+        # Start button
+        start_button = tk.Button(self.title_frame, text="Start Game", font=("Arial", 14),command=self.start_game)
+        start_button.pack(pady=10)
+
+    def setup_game_screen(self):
+        # Game interface widgets
+        self.image_label = tk.Label(self.game_frame)
         self.image_label.pack(pady=10)
 
-        self.text_label = tk.Label(self.window, text="", wraplength=400, font=("Arial", 14))
+        self.text_label = tk.Label(self.game_frame, text="", wraplength=400, font=("Arial", 14))
         self.text_label.pack(pady=20)
 
-        self.choice1_button = tk.Button(self.window, text="", command=self.make_choice1, font=("Arial", 12))
+        self.choice1_button = tk.Button(self.game_frame, text="", command=self.make_choice1, font=("Arial", 12))
         self.choice1_button.pack(side=tk.LEFT, expand=1, pady=10)
 
-        self.choice2_button = tk.Button(self.window, text="", command=self.make_choice2, font=("Arial", 12))
+        self.choice2_button = tk.Button(self.game_frame, text="", command=self.make_choice2, font=("Arial", 12))
         self.choice2_button.pack(side=tk.RIGHT, expand=1, pady=10)
 
-        self.update_display()  # Initialize display
+    def start_game(self):
+        # Transition to the game screen
+        self.title_frame.pack_forget()
+        self.game_frame.pack()
+        self.update_display()
 
     def make_choice1(self):
         self.attraction_score += self.current_node.points_left
@@ -69,7 +140,6 @@ class DatingSimulator:
             self.choice2_button.config(text=self.current_node.option_text2)
 
     def display_outcome(self):
-        # TODO: Add dynamic outcome based on attraction_score value
         # Display the final outcome
         self.text_label.config(text=f"{self.current_node.text}\n\nFinal Attraction Score: {self.attraction_score}")
         image = ImageTk.PhotoImage(Image.open(self.current_node.image_path))
@@ -82,37 +152,10 @@ class DatingSimulator:
         self.window.mainloop()
 
 
+
 def main():
-    # Leaf nodes (Outcomes)
-    outcome1 = TreeNode("You ended up alone, but happy.", None, None, "./images/4.jpg", 0, 0)
-    outcome2 = TreeNode("You found true love!", None, None, "./images/4.jpg", 0, 0)
-    outcome3 = TreeNode("You became best friends instead.", None, None, "./images/4.jpg", 0, 0)
-    outcome4 = TreeNode("You decided to focus on your career.", None, None, "./images/4.jpg", 0, 0)
-
-    # Intermediate questions
-    q2 = TreeNode(
-        "Do you prefer staying in or going out?",
-        "Stay in", "Go out",
-        "./images/3.jpg", 2, -1,
-        outcome1, outcome2
-    )
-    q3 = TreeNode(
-        "Would you compromise on hobbies?",
-        "Yes", "No",
-        "./images/2.jpg", 1, 2,
-        outcome3, outcome4
-    )
-
-    # Root question
-    root = TreeNode(
-        "Do you value looks or personality more?",
-        "Looks", "Personality",
-        "./images/1.jpg", 3, -2,
-        q2, q3
-    )
-
     # Run the simulator
-    simulator = DatingSimulator(root)
+    simulator = DatingSimulator()
     simulator.run()
 
 
