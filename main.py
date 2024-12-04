@@ -1,5 +1,4 @@
 import tkinter as tk
-from PIL import ImageTk, Image
 from tkinter import font
 
 class TreeNode:
@@ -37,35 +36,35 @@ class DatingSimulator:
         outcome1 = TreeNode(
             "You ended up alone, but happy.", 
             None, None, 
-            "./images/4.jpg", 0, 0
+            "./images/4.png", 0, 0
         )
         outcome2 = TreeNode(
             "You found true love!", 
             None, None, 
-            "./images/4.jpg", 0, 0
+            "./images/4.png", 0, 0
         )
         outcome3 = TreeNode(
             "You became best friends instead.", 
             None, None, 
-            "./images/4.jpg", 0, 0
+            "./images/4.png", 0, 0
         )
         outcome4 = TreeNode(
             "You decided to focus on your career.", 
             None, None, 
-            "./images/4.jpg", 0, 0
+            "./images/4.png", 0, 0
         )
 
         # Intermediate questions
         q2 = TreeNode(
             "Do you prefer staying in or going out?",
             "Stay in", "Go out",
-            "./images/3.jpg", 2, -1,
+            "./images/3.png", 2, -1,
             outcome1, outcome2
         )
         q3 = TreeNode(
             "Would you compromise on hobbies?",
             "Yes", "No",
-            "./images/2.jpg", 1, 2,
+            "./images/2.png", 1, 2,
             outcome3, outcome4
         )
 
@@ -73,7 +72,7 @@ class DatingSimulator:
         root = TreeNode(
             "Do you value looks or personality more?",
             "Looks", "Personality",
-            "./images/1.jpg", 3, -2,
+            "./images/1.png", 3, -2,
             q2, q3
         )
 
@@ -105,8 +104,6 @@ class DatingSimulator:
         next_color = "orange" if current_color == "light salmon" else "light salmon"  # Toggle color
         self.title_label.config(fg=next_color)
         self.title_label.after(200, self.blink)  # Call blink() again after 500ms
-
-
 
     def credits_scene(self):
         pass
@@ -151,7 +148,7 @@ class DatingSimulator:
         self.text_label.config(text=self.current_node.text)
 
         # Update the image for the current node
-        image = ImageTk.PhotoImage(Image.open(self.current_node.image_path))
+        image = tk.PhotoImage(file=self.current_node.image_path)
         self.image_label.config(image=image)
         self.image_label.image = image  # Keep reference to avoid garbage collection
 
@@ -166,7 +163,7 @@ class DatingSimulator:
     def display_outcome(self):
         # Display the final outcome
         self.text_label.config(text=f"{self.current_node.text}\n\nFinal Attraction Score: {self.attraction_score}")
-        image = ImageTk.PhotoImage(Image.open(self.current_node.image_path))
+        image = tk.PhotoImage(file=self.current_node.image_path)
         self.image_label.config(image=image)
         self.image_label.image = image  # Keep reference to avoid garbage collection
         self.choice1_button.pack_forget()
