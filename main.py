@@ -1,5 +1,6 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+from tkinter import font
 
 class TreeNode:
     def __init__(self, text, option_text1, option_text2, image_path, points_left, points_right, left=None, right=None):
@@ -25,10 +26,11 @@ class DatingSimulator:
         self.title_frame = tk.Frame(self.window)
         self.game_frame = tk.Frame(self.window)
 
-        self.setup_title_screen()
         self.setup_game_screen()
 
         self.title_frame.pack()  # Start with the title screen
+
+        self.setup_title_screen()
 
     def create_binary_tree(self):
         # Leaf nodes (Outcomes)
@@ -80,12 +82,34 @@ class DatingSimulator:
 
     def setup_title_screen(self):
         # Title label
-        title_label = tk.Label(self.title_frame, text="Welcome to Dating Simulator", font=("Arial", 24))
-        title_label.pack(pady=20)
+        custom_font = font.Font(family="Times New Roman", size=35, weight="bold", slant="italic")
+        self.title_label = tk.Label(self.title_frame, text="Welcome to Dating Simulator", font=custom_font, bg="bisque")
+        self.title_label.pack(pady=20)
 
         # Start button
-        start_button = tk.Button(self.title_frame, text="Start Game", font=("Arial", 14),command=self.start_game)
-        start_button.pack(pady=10)
+        start_button = tk.Button(self.title_frame, text="Start Game", font=("Helvetica", 14, "bold"), command=self.start_game, bg="bisque", fg="purple")
+        start_button.pack(side=tk.LEFT, padx=100, pady=10)
+
+        # Exit button
+        exit_button = tk.Button(self.title_frame, text="Exit", font=("Helvetica", 14, "bold"), command=self.exit_game, bg="bisque", fg="purple")
+        exit_button.pack(side=tk.LEFT, padx=100, pady=10)
+
+        # Start blinking effect
+        self.blink()
+
+    def exit_game(self):
+        pass
+
+    def blink(self):
+        current_color = self.title_label.cget("fg")  # Access `fg` of the label, not the frame
+        next_color = "orange" if current_color == "light salmon" else "light salmon"  # Toggle color
+        self.title_label.config(fg=next_color)
+        self.title_label.after(200, self.blink)  # Call blink() again after 500ms
+
+
+
+    def credits_scene(self):
+        pass
 
     def setup_game_screen(self):
         # Game interface widgets
@@ -153,10 +177,14 @@ class DatingSimulator:
 
 
 
+
+
 def main():
     # Run the simulator
     simulator = DatingSimulator()
     simulator.run()
+
+
 
 
 if __name__ == "__main__":
