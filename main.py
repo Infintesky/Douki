@@ -54,48 +54,94 @@ class DatingSimulator:
         self.setup_title_screen()
 
     def create_binary_tree(self):
-        # Leaf nodes (Outcomes)
-        outcome1 = TreeNode(
+        # Layer 3 nodes
+        l3_1 = TreeNode(
             "You ended up alone, but happy.", 
-            None, None, 
+            None, None,
             "./images/4.png", 0, 0
         )
-        outcome2 = TreeNode(
+        l3_2 = TreeNode(
             "You found true love!", 
-            None, None, 
+            None, None,
             "./images/4.png", 0, 0
         )
-        outcome3 = TreeNode(
+        l3_3 = TreeNode(
             "You became best friends instead.", 
-            None, None, 
+            None, None,
             "./images/4.png", 0, 0
         )
-        outcome4 = TreeNode(
+        l3_4 = TreeNode(
             "You decided to focus on your career.", 
-            None, None, 
+            None, None,
+            "./images/4.png", 0, 0
+        )
+        l3_5 = TreeNode(
+            "You ended up alone, but happy.", 
+            None, None,
+            "./images/4.png", 0, 0
+        )
+        l3_6 = TreeNode(
+            "You found true love!", 
+            None, None,
+            "./images/4.png", 0, 0
+        )
+        l3_7 = TreeNode(
+            "You became best friends instead.", 
+            None, None,
+            "./images/4.png", 0, 0
+        )
+        l3_8 = TreeNode(
+            "You decided to focus on your career.", 
+            None, None,
             "./images/4.png", 0, 0
         )
 
-        # Intermediate questions
-        q2 = TreeNode(
+        # Layer 2 nodes
+        l2_1 = TreeNode(
+            "You ended up alone, but happy.", 
+            "Stay in", "Go out",
+            "./images/4.png", 2, -1,
+            l3_1, l3_2
+        )
+        l2_2 = TreeNode(
+            "You found true love!", 
+            "Stay in", "Go out",
+            "./images/4.png", 2, -1,
+            l3_3, l3_4
+        )
+        l2_3 = TreeNode(
+            "You became best friends instead.", 
+            "Stay in", "Go out",
+            "./images/4.png", 2, -1,
+            l3_5, l3_6
+        )
+        l2_4 = TreeNode(
+            "You decided to focus on your career.", 
+            "Stay in", "Go out",
+            "./images/4.png", 2, -1,
+            l3_7, l3_8
+        )
+
+        # Layer 1 nodes
+        l1_1 = TreeNode(
             "Do you prefer staying in or going out?",
             "Stay in", "Go out",
             "./images/3.png", 2, -1,
-            outcome1, outcome2
+            l2_1, l2_2
         )
-        q3 = TreeNode(
+        l1_2 = TreeNode(
             "Would you compromise on hobbies?",
             "Yes", "No",
             "./images/2.png", 1, 2,
-            outcome3, outcome4
+            l2_3, l2_4
         )
 
-        # Root question
+        # Layer 0 node
         root = TreeNode(
             "Do you value looks or personality more?",
             "Looks", "Personality",
             "./images/1.png", 3, -2,
-            q2, q3
+            l1_1, l1_2
         )
 
         return root
