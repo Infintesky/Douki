@@ -2,7 +2,28 @@ import tkinter as tk
 from tkinter import font
 
 class TreeNode:
+    """
+    A class representing a node in a decision tree for the game.
+
+    Each node contains the text for a scenario, two options for the user to choose from, 
+    an associated image, and points assigned to each option. The node also has references 
+    to its left and right child nodes, representing subsequent scenarios based on user choices.
+    """
+
     def __init__(self, text, option_text1, option_text2, image_path, points_left, points_right, left=None, right=None):
+        """
+        Initializes a TreeNode instance.
+
+        Parameters:
+        - text (str): The main text displayed at this node.
+        - option_text1 (str): The text for the first choice.
+        - option_text2 (str): The text for the second choice.
+        - image_path (str): The path to the image associated with this node.
+        - points_left (int): Points awarded for choosing the first option.
+        - points_right (int): Points awarded for choosing the second option.
+        - left (TreeNode, optional): The left child node representing the next scenario for option 1.
+        - right (TreeNode, optional): The right child node representing the next scenario for option 2.
+        """
         self.text = text                  # Text for current Node
         self.option_text1 = option_text1  # Text for choice 1
         self.option_text2 = option_text2  # Text for choice 2
@@ -11,6 +32,7 @@ class TreeNode:
         self.points_right = points_right  # Points for choice 2
         self.left = left                  # Left child
         self.right = right                # Right child
+
 
 class DatingSimulator:
     def __init__(self):
@@ -176,8 +198,6 @@ def main():
     # Run the simulator
     simulator = DatingSimulator()
     simulator.run()
-
-
 
 
 if __name__ == "__main__":
