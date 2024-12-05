@@ -172,10 +172,6 @@ class DatingSimulator:
     def run(self):
         self.window.mainloop()
 
-
-
-
-
 def main():
     # Run the simulator
     simulator = DatingSimulator()
