@@ -228,16 +228,14 @@ class DatingSimulator:
             self.choice1_button.config(text=self.current_node.option_text1)
             self.choice2_button.config(text=self.current_node.option_text2)
 
-    # Update display
-    self.text_label.config(text=ending_text)
-    image = tk.PhotoImage(file=image_path)
-    self.image_label.config(image=image)
-    self.image_label.image = image  # Avoid garbage collection
-    self.choice1_button.pack_forget()
-    self.choice2_button.pack_forget()
-
-
-
+    def display_outcome(self):
+        # Display the final outcome
+        self.text_label.config(text=f"{self.current_node.text}\n\nFinal Attraction Score: {self.attraction_score}")
+        image = tk.PhotoImage(file=self.current_node.image_path)
+        self.image_label.config(image=image)
+        self.image_label.image = image  # Keep reference to avoid garbage collection
+        self.choice1_button.pack_forget()
+        self.choice2_button.pack_forget()
 
     def run(self):
         self.window.mainloop()
