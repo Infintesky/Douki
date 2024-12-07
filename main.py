@@ -228,18 +228,6 @@ class DatingSimulator:
             self.choice1_button.config(text=self.current_node.option_text1)
             self.choice2_button.config(text=self.current_node.option_text2)
 
-    def display_outcome(self):
-    # Determine ending based on attraction score
-        if self.attraction_score > 5:
-            ending_text = "Congratulations! You built a strong connection with Kai Siang. Keep cherishing these moments!"
-            image_path = "./images/happy_ending.png"
-        elif self.attraction_score > 2:
-            ending_text = "Not bad! Kai Siang appreciates your effort, but there's room to grow closer."
-            image_path = "./images/neutral_ending.png"
-        else:
-            ending_text = "It seems things didn't work out as well. Better luck next time!"
-            image_path = "./images/sad_ending.png"
-
     # Update display
     self.text_label.config(text=ending_text)
     image = tk.PhotoImage(file=image_path)
