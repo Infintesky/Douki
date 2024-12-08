@@ -10,7 +10,7 @@ class TreeNode:
     to its left and right child nodes, representing subsequent scenarios based on user choices.
     """
 
-    def __init__(self, text, option_text1, option_text2, image_path, points_left, points_right, left=None, right=None):
+    def __init__(self, text, option_text1, option_text2, image_path, points_left, points_right, left, right):
         """
         Initializes a TreeNode instance.
 
@@ -34,13 +34,20 @@ class TreeNode:
         self.right = right                # Right child
 
 
-class DatingSimulator:
+class DatingSimulator(tk.Tk):
     def __init__(self):
+        super().__init__()  # Initialize the tk.Tk class
+
+        # Assign self (the Tk instance) to self.window for readability
+        self.window = self
+
         self.current_node = self.create_binary_tree()
         self.attraction_score = 0  # Initialize attraction score
 
+        # Screen size
+        self.window.geometry("1024x768")
+
         # Set up Tkinter window
-        self.window = tk.Tk()
         self.window.title("Dating Simulator")
 
         # Create frames
@@ -53,47 +60,65 @@ class DatingSimulator:
 
         self.setup_title_screen()
 
+
     def create_binary_tree(self):
+        # Layer 4 node (clear node)
+        l4_1 = TreeNode(
+            "",
+            "",
+            "",
+            "", 0, 0,
+            None, None
+        )
+
         # Layer 3 nodes
         l3_1 = TreeNode(
             "During dinner at the hostel, Ryan notices Kai Siang eating plain bread. He admits he forgot his wallet in his dorm.",
             "Forgot your wallet, ah? Let’s share my chicken rice—take some, no need to stress.", "Tough day? Want me to grab something for you? You can pay me back when it’s convenient.",
             "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_2 = TreeNode(
             "During a quiet evening, Kai Siang asks Ryan what he does for fun at the hostel.",
             "Been meaning to join your basketball games. Think you could teach me a thing or two?", "Not much, lah—just gaming and catching up on shows. You’d probably find it boring.",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_3 = TreeNode(
             "After volleyball, Kai Siang thanks Ryan for helping him clean up the court.",
             "Of course—teammates help each other out. You can count on me anytime.", "No worries, lah—it’s part of the routine. You’d do the same for me.",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_4 = TreeNode(
             "On a free weekend, Kai Siang asks Ryan about his plans. He seems hesitant, as if testing the waters.",
             "Nothing big planned. Want to check out Bugis or just chill at the hostel?", "Not much. You? Got anything exciting planned that I can tag along for?",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_5 = TreeNode(
             "Kai Siang spills Teh C Siew Dai Peng at the canteen and looks horrified, muttering, 'Walao eh..!'",
             "Eh, don’t stress lah. I’ll grab napkins.", "Relax, bro—it’s just a drink. Happens to the best of us.",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_6 = TreeNode(
             "Kai Siang says JJ Lin is performing at the stadium, but tickets are expensive.",
             "Wah, let’s go ah — so rare to see them live!", "Sounds amazing, but maybe we can wait for the next show when it’s less pricey?",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_7 = TreeNode(
             "Kai Siang shares a nostalgic story about his hometown with his parents.",
             "That sounds so fun. I’ve never been to one like that—maybe you can show me someday?", "Wah, nice memory. It’s great that you have moments like that to treasure.",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
         l3_8 = TreeNode(
             "Kai Siang is rushing to finish an assignment and looks stressed as the deadline approaches.",
             "Don’t stress—I’ll help you double-check and format so you can submit on time.", "Wah, cutting it close. Focus on the main parts—you’ll get it done.",
-            "./images/4.png", 1, 0
+            "./images/4.png", 1, 0,
+            l4_1, l4_1
         )
 
         # Layer 2 nodes
@@ -148,24 +173,34 @@ class DatingSimulator:
 
 
     def setup_title_screen(self):
+        self.update_display()
         # Title label
         custom_font = font.Font(family="Times New Roman", size=35, weight="bold", slant="italic")
         self.title_label = tk.Label(self.title_frame, text="Welcome to Dating Simulator", font=custom_font, bg="bisque")
         self.title_label.pack(pady=20)
 
+        # Image
+        image = tk.PhotoImage(file="./images/4.png")
+        self.image_label.config(image=image)
+        self.image_label.image = image
+
         # Start button
-        start_button = tk.Button(self.title_frame, text="Start Game", font=("Helvetica", 14, "bold"), command=self.start_game, bg="bisque", fg="light salmon")
+        start_button = tk.Button(self.title_frame, text="Start Game", font=("Helvetica", 14, "bold"),
+                                 command=self.start_game, bg="bisque", fg="light salmon")
         start_button.pack(side=tk.LEFT, padx=100, pady=10)
 
         # Exit button
-        exit_button = tk.Button(self.title_frame, text="Exit", font=("Helvetica", 14, "bold"), command=self.exit_game, bg="bisque", fg="light salmon")
+        exit_button = tk.Button(self.title_frame, text="Exit", font=("Helvetica", 14, "bold"), command=self.exit_game,
+                                bg="bisque", fg="light salmon")
         exit_button.pack(side=tk.LEFT, padx=100, pady=10)
 
         # Start blinking effect
         self.blink()
 
+
     def exit_game(self):
-        pass
+        # Exit the window
+        self.destroy()
 
     def blink(self):
         current_color = self.title_label.cget("fg")  # Access `fg` of the label, not the frame
@@ -225,19 +260,26 @@ class DatingSimulator:
             self.display_outcome()
         else:
             # Update the button text for the choices
-            self.choice1_button.config(text=self.current_node.option_text1)
-            self.choice2_button.config(text=self.current_node.option_text2)
+            self.choice1_button.config(text=self.current_node.option_text1, wraplength= 400)
+            self.choice2_button.config(text=self.current_node.option_text2, wraplength= 400)
 
     def display_outcome(self):
-        if self.attraction_score > 5:
+
+        if self.attraction_score >= 4 :
             ending_text = "Congratulations! You built a strong connection with Kai Siang. Keep cherishing these moments!"
-            image_path = "./images/happy_ending.png"
-        elif self.attraction_score > 2:
+            image_path = "./images/4.png"
+
+        elif self.attraction_score >= 2:
             ending_text = "Not bad! Kai Siang appreciates your effort, but there's room to grow closer."
-            image_path = "./images/neutral_ending.png"
+            image_path = "./images/4.png"
+
+        elif self.attraction_score >= 1:
+            ending_text = "Try again! Kai Siang is just your Hi-Bye freind."
+            image_path = "./images/4.png"
+
         else:
-            ending_text = "It seems things didn't work out as well. Better luck next time!"
-            image_path = "./images/sad_ending.png"
+            ending_text = "U NEEEED TO LEAVE!!! U are HATEDDD! ALWAYS HATED!!!!"
+            image_path = "./images/4.png"
 
         # Update display
         self.text_label.config(text=ending_text)
@@ -246,6 +288,7 @@ class DatingSimulator:
         self.image_label.image = image  # Avoid garbage collection
         self.choice1_button.pack_forget()
         self.choice2_button.pack_forget()
+
     def run(self):
         self.window.mainloop()
 
