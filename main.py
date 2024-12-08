@@ -73,8 +73,8 @@ class DatingSimulator(tk.Tk):
 
         # Layer 3 nodes
         l3_1 = TreeNode(
-            "During dinner at the hostel, Ryan notices Kai Siang eating plain bread. He admits he forgot his wallet in his dorm.",
-            "Forgot your wallet, ah? Let’s share my chicken rice—take some, no need to stress.", "Tough day? Want me to grab something for you? You can pay me back when it’s convenient.",
+            "During dinner in their room, Ryan notices Kai Siang eating Hello Panda. He admits he's in debt.",
+            "You broke ah? You lucky I like you! I pay for you this week.", "I lend you $100! You  next week pay me back but got interest $10 more!",
             "./images/4.png", 1, 0,
             l4_1, l4_1
         )
@@ -123,48 +123,48 @@ class DatingSimulator(tk.Tk):
 
         # Layer 2 nodes
         l2_1 = TreeNode(
-            " Ryan notices Kai Siang sitting alone at the hostel canteen, scrolling on his phone, his plate of Cai Fan barely touched.",
-            "Cai Fan again? You okay? Want some company? I’ve been meaning to chat with you about weekend plans.", "Busy day, huh? How about we can catch up later?",
+            " After that, Ryan notices Kai Siang sitting moodily at his table, scrolling on his phone, stressed.",
+            "You okay? Want to talk it out?", "DAMN! Take it easy lil man!",
             "./images/4.png", 1, 0,
             l3_1, l3_2
         )
         l2_2 = TreeNode(
-            "During volleyball practice, Kai Siang is not performing well and looks visibly frustrated afterward.",
-            "Rough day? Want to practice tomorrow?", "One of those days, huh? You’ve been solid otherwise—don’t let a few misses get to you.",
+            "While practicing the problem sets for biology, Kai Siang is seems as if he is struggling and looks visibly frustrated afterward.",
+            "Want to practice on me right now?", "Want to talk about it?",
             "./images/4.png", 1, 0,
             l3_3, l3_4
         )
         l2_3 = TreeNode(
-            "Ryan overhears classmates discussing Kai Siang's recent volleyball performance. One of them says, 'He’s okay, but he’s not as naturally talented as the rest of us.'",
-            "Natural talent only gets you so far. You know how much effort he puts in—he’s the reason our team has been improving.", "Wah, not fair lah. He’s been working hard and showing up every practice. Give him some credit.",
+            "Ryan overhears classmates discussing Kai Siang's recent performance in class. One of them says, 'Why's he so sad?'",
+            "Let's go out and destress! We can dress up nicely and go to the arcade and take some photos at the photobooth!!!", "It must be the stress from the finals.",
             "./images/4.png", 1, 0,
             l3_5, l3_6
         )
         l2_4 = TreeNode(
-            "After a long week, Kai Siang invites Ryan to a casual basketball game with his friends, saying it’s a great way to unwind.",
-            "Sounds like fun! I might not be great, but I’d love to join—you’ll have to coach me though!", "Basketball sounds great, but I’m wiped out this week. I’ll come along and cheer you on, though.",
+            " After a long week, Kai Siang invites Ryan to play Valorant with him.",
+            "Can u coach me? I don't know how to play!", "Sorry I have group meeting 🙁 You have fun though!",
             "./images/4.png", 1, 0,
             l3_7, l3_8
         )
 
         # Layer 1 nodes
         l1_1 = TreeNode(
-            "Kai Siang admits he’s feeling unwell after a long night of studying. He skipped breakfast because he overslept and looked visibly drained.",
-            "Sounds like you need a recharge. How about I grab something light from the canteen for you—porridge maybe?", "Wah, you’ve been pushing yourself. Tonight, rest early—I’ll help you catch up on any notes.",
+            "Kai Siang admits he’s stuck for the Rhino 3D project and he needs all the help he can get especially from his hero Ryan.",
+            "Come, let me help you! I already finished it.", "Wah, you’ve been pushing yourself. Tonight, rest early— let me give you a massage! You seem really tense....",
             "./images/3.png", 1, 0,
             l2_1, l2_2
         )
         l1_2 = TreeNode(
-            "During class, Kai Siang leans over and asks Ryan about choosing between the CSD or EPD pillar. He seems conflicted and mentions that he enjoys both areas.",
-            "It’s a big decision. Let’s talk tonight—maybe we can list out your strengths and interests together.", "Wah, both are great. I’d say think about which one you’d enjoy waking up for every day—it’s about what feels right.",
+            "When studying together in their shared room, Kai Siang leans over and asks Ryan, 'Do you want to choose the CSD or EPD pillar or me! HAHA jokes!'. He seems conflicted as he saw Ryan talking with another girl.",
+            "What are you talking about! You will always be my first choice!", "I'm not so sure about us right now...",
             "./images/2.png", 1, 0,
             l2_3, l2_4
         )
 
         # Layer 0 node
         root = TreeNode(
-            "Ryan sees Kai Siang in the library, scribbling notes furiously, his laptop open to a dense slide deck. His shoulders are tense, and he’s muttering, “加油 (Jiāyóu)” under his breath.",
-            "Hey, looks like you’ve been at it for a while. Want to take a quick break? Maybe Kopi Peng will help clear your head.", "You okay? You’re working hard—if you need to vent or take a breather, I’m here.",
+            "Ryan sees Kai Siang in the room, scribbling notes furiously, his laptop open to a dense slide deck. His shoulders are tense, and he’s muttering, “加油 (Jiāyóu)” under his breath.",
+            "Hey, looks like you’ve been at it for a while. Want to take a quick break? Maybe some green te will help clear your head.", "You okay? You’re working hard—if you need to vent or take a breather, I’m here.",
             "./images/1.png", 1, 0,
             l1_1, l1_2
         )
@@ -178,11 +178,6 @@ class DatingSimulator(tk.Tk):
         custom_font = font.Font(family="Times New Roman", size=35, weight="bold", slant="italic")
         self.title_label = tk.Label(self.title_frame, text="Welcome to Dating Simulator", font=custom_font, bg="bisque")
         self.title_label.pack(pady=20)
-
-        # Image
-        image = tk.PhotoImage(file="./images/4.png")
-        self.image_label.config(image=image)
-        self.image_label.image = image
 
         # Start button
         start_button = tk.Button(self.title_frame, text="Start Game", font=("Helvetica", 14, "bold"),
