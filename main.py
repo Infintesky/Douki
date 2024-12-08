@@ -204,7 +204,61 @@ class DatingSimulator(tk.Tk):
         self.title_label.after(200, self.blink)  # Call blink() again after 500ms
 
     def credits_scene(self):
-        pass
+        # Label to display the credits
+        credits_label = tk.Label(
+            self.window,
+            text="",
+            font=("Helvetica", 80, "normal"),  # Use Helvetica
+            justify="center",
+            wraplength=2000,  # Wrap text within a reasonable width
+            bg="black",  # Background black
+            fg="white"  # Text color white
+    )
+        # Function to scroll credits
+        credits_text = '''
+
+
+
+
+
+
+
+
+
+
+
+    Cast
+
+    Coder 1: Ryan
+
+    Coder 2: Sherylyn
+
+    Coder 3: Wei Yang
+
+    Coder 4: Kai Siang
+
+    Coder 5: Beth
+
+    Coder 6: Alvin
+
+    Story written by Beth & Sherylyn
+
+    Thank you for playing :)
+        '''
+        credits_label.config(text=credits_text)  # Set initial text
+        credits_label.place(relx=0.5, y=self.window.winfo_height(), anchor="n")  # Start from bottom
+
+        # Function to move text upward
+        def scroll_text():
+            current_y = credits_label.winfo_y()  # Get current Y position
+            if current_y + credits_label.winfo_height() > 0:  # If still visible
+                credits_label.place(y=current_y - 2)  # Move up by 2 pixels
+                credits_label.after(30, scroll_text)  # Repeat after 30ms
+            else:
+                credits_label.config(text="")  # Clear text once it scrolls out
+                show_back_button()  # Show the "Back to Title Screen" button
+
+        scroll_text()  # Start scrolling
 
     def setup_game_screen(self):
         # Game interface widgets
@@ -284,6 +338,14 @@ class DatingSimulator(tk.Tk):
         self.choice1_button.pack_forget()
         self.choice2_button.pack_forget()
 
+        # Create a new frame for the "Next" button
+        button_frame = tk.Frame(self.game_frame)
+        button_frame.pack(pady=20)
+
+        # Add "Next" button to transition to the credits scene
+        next_button = tk.Button(button_frame, text="Next", font=("Helvetica", 14, "bold"),
+                             command=self.credits_scene, bg="bisque", fg="light salmon")
+        next_button.pack(pady=10)
     def run(self):
         self.window.mainloop()
 
