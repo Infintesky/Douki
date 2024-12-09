@@ -74,7 +74,7 @@ class DatingSimulator(tk.Tk):
         # Layer 3 nodes
         l3_1 = TreeNode(
             "During dinner in their room, Ryan notices Kai Siang eating Hello Panda. He admits he's in debt.",
-            "You broke ah? You lucky I like you! I pay for you this week.", "I lend you $100! You  next week pay me back but got interest $10 more!",
+            "You broke ah? You lucky I like you! I pay for you this week.", "I lend you $100! You next week pay me back but got interest $10 more!",
             "./images/l3_1.png", 1, 0,
             l4_1, l4_1
         )
@@ -164,7 +164,7 @@ class DatingSimulator(tk.Tk):
         # Layer 0 node
         root = TreeNode(
             "Ryan sees Kai Siang in the room, scribbling notes furiously, his laptop open to a dense slide deck. His shoulders are tense, and he’s muttering, “加油 (Jiāyóu)” under his breath.",
-            "Hey, looks like you’ve been at it for a while. Want to take a quick break? Maybe some green te will help clear your head.", "You okay? You’re working hard—if you need to vent or take a breather, I’m here.",
+            "Hey, looks like you’ve been at it for a while. Want to take a quick break? Maybe some green tea will help clear your head.", "You okay? You’re working hard—if you need to vent or take a breather, I’m here.",
             "./images/root.png", 1, 0,
             l1_1, l1_2
         )
@@ -173,7 +173,7 @@ class DatingSimulator(tk.Tk):
 
 
     def setup_title_screen(self):
-        print("setup_title_screen called")  # Debugging
+        print("setup_title_screen called")  # Debugging (Checking whether the function is called)
 
         for widget in self.title_frame.winfo_children():
             widget.destroy()
@@ -358,7 +358,7 @@ Thank you for playing :)
     def display_outcome(self):
 
         if self.attraction_score >= 4 :
-            ending_text = "Congratulations! You built a strong connection with Kai Siang. Keep cherishing these moments!"
+            ending_text = "Congratulations! Kai Siang is your girlfriend now!!!"
             image_path = "./images/result_1.png"
 
         elif self.attraction_score >= 2:
@@ -366,11 +366,11 @@ Thank you for playing :)
             image_path = "./images/result_2.png"
 
         elif self.attraction_score >= 1:
-            ending_text = "Try again! Kai Siang is just your Hi-Bye freind."
+            ending_text = "Try again! Kai Siang is just your Hi-Bye friend."
             image_path = "./images/l2_2_result_3.png"
 
         else:
-            ending_text = "U NEEEED TO LEAVE!!! U are HATEDDD! ALWAYS HATED!!!!"
+            ending_text = "U NEEEED TO LEAVE!!! U are HATEDDD! ALWAYS HATED NEVER LOVED!!!!"
             image_path = "./images/result_4.png"
 
         # Update display
