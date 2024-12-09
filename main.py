@@ -228,16 +228,13 @@ class DatingSimulator(tk.Tk):
             text="",
             font=("Helvetica", 40, "normal"),  # Use Helvetica
             justify="center",
-            wraplength=500,  # Wrap text within a reasonable width
+            wraplength=1000,  # Wrap text within a reasonable width
             bg="black",  # Background black
             fg="white"  # Text color white
     )
         # Function to scroll credits
         credits_text = '''
 
-<<<<<<< HEAD
-    Cast
-=======
 
 
 
@@ -247,25 +244,15 @@ class DatingSimulator(tk.Tk):
 
 
 
-        
-
->>>>>>> 563b2d4656b7a017021e2a538b9c7643679883b4
 
 
-
-
-Cast
+Cast:
 
 Ryan
 
 Sherylyn
 
-<<<<<<< HEAD
-    Story written by Beth 
-    & Sherylyn
-=======
 Wei Yang
->>>>>>> 563b2d4656b7a017021e2a538b9c7643679883b4
 
 Kai Siang
 
@@ -274,6 +261,7 @@ Beth
 Alvin
 
 Thank you for playing :)
+
         '''
         credits_label.config(text=credits_text)  # Set initial text
         credits_label.place(relx=0.5, y=self.window.winfo_height(), anchor="n")  # Start from bottom
