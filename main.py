@@ -45,7 +45,7 @@ class DatingSimulator(tk.Tk):
         self.attraction_score = 0  # Initialize attraction score
 
         # Screen size
-        self.window.geometry("1024x768")
+        self.window.geometry("1366x768")
 
         # Set up Tkinter window
         self.window.title("Dating Simulator")
@@ -75,49 +75,49 @@ class DatingSimulator(tk.Tk):
         l3_1 = TreeNode(
             "During dinner in their room, Ryan notices Kai Siang eating Hello Panda. He admits he's in debt.",
             "You broke ah? You lucky I like you! I pay for you this week.", "I lend you $100! You  next week pay me back but got interest $10 more!",
-            "./images/4.png", 1, 0,
+            "./images/l3_1.png", 1, 0,
             l4_1, l4_1
         )
         l3_2 = TreeNode(
             "During a quiet evening, Kai Siang asks Ryan what he does for fun at the hostel.",
             "Been meaning to join your basketball games. Think you could teach me a thing or two?", "Not much, lah—just gaming and catching up on shows. You’d probably find it boring.",
-            "./images/4.png", 1, 0,
+            "./images/l3_2.png", 1, 0,
             l4_1, l4_1
         )
         l3_3 = TreeNode(
             "After volleyball, Kai Siang thanks Ryan for helping him clean up the court.",
             "Of course—teammates help each other out. You can count on me anytime.", "No worries, lah—it’s part of the routine. You’d do the same for me.",
-            "./images/4.png", 1, 0,
+            "./images/l3_3.png", 1, 0,
             l4_1, l4_1
         )
         l3_4 = TreeNode(
             "On a free weekend, Kai Siang asks Ryan about his plans. He seems hesitant, as if testing the waters.",
             "Nothing big planned. Want to check out Bugis or just chill at the hostel?", "Not much. You? Got anything exciting planned that I can tag along for?",
-            "./images/4.png", 1, 0,
+            "./images/result_4.png", 1, 0,
             l4_1, l4_1
         )
         l3_5 = TreeNode(
             "Kai Siang spills Teh C Siew Dai Peng at the canteen and looks horrified, muttering, 'Walao eh..!'",
             "Eh, don’t stress lah. I’ll grab napkins.", "Relax, bro—it’s just a drink. Happens to the best of us.",
-            "./images/4.png", 1, 0,
+            "./images/l3_5.png", 1, 0,
             l4_1, l4_1
         )
         l3_6 = TreeNode(
             "Kai Siang says JJ Lin is performing at the stadium, but tickets are expensive.",
             "Wah, let’s go ah — so rare to see them live!", "Sounds amazing, but maybe we can wait for the next show when it’s less pricey?",
-            "./images/4.png", 1, 0,
+            "./images/l3_6.png", 1, 0,
             l4_1, l4_1
         )
         l3_7 = TreeNode(
             "Kai Siang shares a nostalgic story about his hometown with his parents.",
             "That sounds so fun. I’ve never been to one like that—maybe you can show me someday?", "Wah, nice memory. It’s great that you have moments like that to treasure.",
-            "./images/4.png", 1, 0,
+            "./images/l3_7.png", 1, 0,
             l4_1, l4_1
         )
         l3_8 = TreeNode(
             "Kai Siang is rushing to finish an assignment and looks stressed as the deadline approaches.",
             "Don’t stress—I’ll help you double-check and format so you can submit on time.", "Wah, cutting it close. Focus on the main parts—you’ll get it done.",
-            "./images/4.png", 1, 0,
+            "./images/l3_8.png", 1, 0,
             l4_1, l4_1
         )
 
@@ -125,25 +125,25 @@ class DatingSimulator(tk.Tk):
         l2_1 = TreeNode(
             " After that, Ryan notices Kai Siang sitting moodily at his table, scrolling on his phone, stressed.",
             "You okay? Want to talk it out?", "DAMN! Take it easy lil man!",
-            "./images/4.png", 1, 0,
+            "./images/l2_1.png", 1, 0,
             l3_1, l3_2
         )
         l2_2 = TreeNode(
             "While practicing the problem sets for biology, Kai Siang is seems as if he is struggling and looks visibly frustrated afterward.",
             "Want to practice on me right now?", "Want to talk about it?",
-            "./images/4.png", 1, 0,
+            "./images/l2_2_result_3.png", 1, 0,
             l3_3, l3_4
         )
         l2_3 = TreeNode(
             "Ryan overhears classmates discussing Kai Siang's recent performance in class. One of them says, 'Why's he so sad?'",
             "Let's go out and destress! We can dress up nicely and go to the arcade and take some photos at the photobooth!!!", "It must be the stress from the finals.",
-            "./images/4.png", 1, 0,
+            "./images/l2_3.png", 1, 0,
             l3_5, l3_6
         )
         l2_4 = TreeNode(
             " After a long week, Kai Siang invites Ryan to play Valorant with him.",
             "Can u coach me? I don't know how to play!", "Sorry I have group meeting 🙁 You have fun though!",
-            "./images/4.png", 1, 0,
+            "./images/l2_4.png", 1, 0,
             l3_7, l3_8
         )
 
@@ -151,13 +151,13 @@ class DatingSimulator(tk.Tk):
         l1_1 = TreeNode(
             "Kai Siang admits he’s stuck for the Rhino 3D project and he needs all the help he can get especially from his hero Ryan.",
             "Come, let me help you! I already finished it.", "Wah, you’ve been pushing yourself. Tonight, rest early— let me give you a massage! You seem really tense....",
-            "./images/3.png", 1, 0,
+            "./images/l1_1.png", 1, 0,
             l2_1, l2_2
         )
         l1_2 = TreeNode(
             "When studying together in their shared room, Kai Siang leans over and asks Ryan, 'Do you want to choose the CSD or EPD pillar or me! HAHA jokes!'. He seems conflicted as he saw Ryan talking with another girl.",
             "What are you talking about! You will always be my first choice!", "I'm not so sure about us right now...",
-            "./images/2.png", 1, 0,
+            "./images/l1_2.png", 1, 0,
             l2_3, l2_4
         )
 
@@ -165,7 +165,7 @@ class DatingSimulator(tk.Tk):
         root = TreeNode(
             "Ryan sees Kai Siang in the room, scribbling notes furiously, his laptop open to a dense slide deck. His shoulders are tense, and he’s muttering, “加油 (Jiāyóu)” under his breath.",
             "Hey, looks like you’ve been at it for a while. Want to take a quick break? Maybe some green te will help clear your head.", "You okay? You’re working hard—if you need to vent or take a breather, I’m here.",
-            "./images/1.png", 1, 0,
+            "./images/root.png", 1, 0,
             l1_1, l1_2
         )
 
@@ -217,16 +217,6 @@ class DatingSimulator(tk.Tk):
         # Function to scroll credits
         credits_text = '''
 
-
-
-
-
-
-
-
-
-
-
     Cast
 
     Coder 1: Ryan
@@ -241,7 +231,8 @@ class DatingSimulator(tk.Tk):
 
     Coder 6: Alvin
 
-    Story written by Beth & Sherylyn
+    Story written by Beth 
+    & Sherylyn
 
     Thank you for playing :)
         '''
@@ -253,7 +244,7 @@ class DatingSimulator(tk.Tk):
             current_y = credits_label.winfo_y()  # Get current Y position
             if current_y + credits_label.winfo_height() > 0:  # If still visible
                 credits_label.place(y=current_y - 2)  # Move up by 2 pixels
-                credits_label.after(30, scroll_text)  # Repeat after 30ms
+                credits_label.after(10, scroll_text)  # Repeat after 30ms
             else:
                 credits_label.config(text="")  # Clear text once it scrolls out
                 show_back_button()  # Show the "Back to Title Screen" button
@@ -316,19 +307,19 @@ class DatingSimulator(tk.Tk):
 
         if self.attraction_score >= 4 :
             ending_text = "Congratulations! You built a strong connection with Kai Siang. Keep cherishing these moments!"
-            image_path = "./images/4.png"
+            image_path = "./images/result_1.png"
 
         elif self.attraction_score >= 2:
             ending_text = "Not bad! Kai Siang appreciates your effort, but there's room to grow closer."
-            image_path = "./images/4.png"
+            image_path = "./images/result_2.png"
 
         elif self.attraction_score >= 1:
             ending_text = "Try again! Kai Siang is just your Hi-Bye freind."
-            image_path = "./images/4.png"
+            image_path = "./images/l2_2_result_3.png"
 
         else:
             ending_text = "U NEEEED TO LEAVE!!! U are HATEDDD! ALWAYS HATED!!!!"
-            image_path = "./images/4.png"
+            image_path = "./images/result_4.png"
 
         # Update display
         self.text_label.config(text=ending_text)
