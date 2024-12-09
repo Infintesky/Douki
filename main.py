@@ -173,6 +173,17 @@ class DatingSimulator(tk.Tk):
 
 
     def setup_title_screen(self):
+        print("setup_title_screen called")  # Debugging
+
+        for widget in self.title_frame.winfo_children():
+            widget.destroy()
+        self.title_frame.pack_forget()
+        self.game_frame.pack_forget()  # Ensure the game frame is not visible
+
+        # Reset and reinitialize the title frame
+        self.title_frame = tk.Frame(self.window)  # Create a new title frame
+        self.title_frame.pack()
+        
         self.update_display()
         # Title label
         custom_font = font.Font(family="Times New Roman", size=35, weight="bold", slant="italic")
@@ -204,37 +215,65 @@ class DatingSimulator(tk.Tk):
         self.title_label.after(200, self.blink)  # Call blink() again after 500ms
 
     def credits_scene(self):
+    # Clear the display_outcome screen
+        for widget in self.game_frame.winfo_children():
+            widget.pack_forget()  # Remove all widgets from the game frame
+        # Create a full-screen black background
+        background_frame = tk.Frame(self.window, bg="black")
+        background_frame.place(relx=0, rely=0, relwidth=1, relheight=1)  # Covers the entire window
+
         # Label to display the credits
         credits_label = tk.Label(
             self.window,
             text="",
-            font=("Helvetica", 80, "normal"),  # Use Helvetica
+            font=("Helvetica", 40, "normal"),  # Use Helvetica
             justify="center",
-            wraplength=2000,  # Wrap text within a reasonable width
+            wraplength=500,  # Wrap text within a reasonable width
             bg="black",  # Background black
             fg="white"  # Text color white
     )
         # Function to scroll credits
         credits_text = '''
 
+<<<<<<< HEAD
     Cast
+=======
 
-    Coder 1: Ryan
 
-    Coder 2: Sherylyn
 
-    Coder 3: Wei Yang
 
-    Coder 4: Kai Siang
 
-    Coder 5: Beth
 
-    Coder 6: Alvin
 
+
+
+        
+
+>>>>>>> 563b2d4656b7a017021e2a538b9c7643679883b4
+
+
+
+
+Cast
+
+Ryan
+
+Sherylyn
+
+<<<<<<< HEAD
     Story written by Beth 
     & Sherylyn
+=======
+Wei Yang
+>>>>>>> 563b2d4656b7a017021e2a538b9c7643679883b4
 
-    Thank you for playing :)
+Kai Siang
+
+Beth
+
+Alvin
+
+Thank you for playing :)
         '''
         credits_label.config(text=credits_text)  # Set initial text
         credits_label.place(relx=0.5, y=self.window.winfo_height(), anchor="n")  # Start from bottom
@@ -248,6 +287,18 @@ class DatingSimulator(tk.Tk):
             else:
                 credits_label.config(text="")  # Clear text once it scrolls out
                 show_back_button()  # Show the "Back to Title Screen" button
+        
+        # Function to show "Back to Title Screen" button
+        def show_back_button():
+        # Clear all widgets from the `background_frame`
+            for widget in background_frame.winfo_children():
+                widget.destroy()
+            background_frame.destroy()  # Remove the credits background frame
+
+            # Transition back to the title screen
+            self.title_frame.pack()  # Make sure the title frame is visible
+            self.setup_title_screen()  # Set up the title screen
+        
 
         scroll_text()  # Start scrolling
 
@@ -266,10 +317,23 @@ class DatingSimulator(tk.Tk):
         self.choice2_button.pack(side=tk.RIGHT, expand=1, pady=10)
 
     def start_game(self):
-        # Transition to the game screen
-        self.title_frame.pack_forget()
+        # Clear the title screen
+        for widget in self.title_frame.winfo_children():
+            widget.destroy()
+        self.title_frame.pack_forget()  # Hide the title frame
+
+        # Clear any residual widgets in the game frame
+        for widget in self.game_frame.winfo_children():
+            widget.destroy()
+
+        # Reinitialize the game frame
+        self.setup_game_screen()
         self.game_frame.pack()
-        self.update_display()
+
+        # Reset the game state
+        self.current_node = self.create_binary_tree()  # Reset to the root node
+        self.attraction_score = 0  # Reset attraction score
+        self.update_display()  # Display the first scenario
 
     def make_choice1(self):
         self.attraction_score += self.current_node.points_left
