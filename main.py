@@ -35,7 +35,14 @@ class TreeNode:
 
 
 class DatingSimulator(tk.Tk):
+    """
+    A dating simulator game built using Tkinter, featuring interactive dialogue and branching outcomes.
+    """
     def __init__(self):
+        """
+        Initializes the DatingSimulator class, setting up the main window, game frames,
+        and starting configurations.
+        """
         super().__init__()  # Initialize the tk.Tk class
 
         # Assign self (the Tk instance) to self.window for readability
@@ -62,6 +69,12 @@ class DatingSimulator(tk.Tk):
 
 
     def create_binary_tree(self):
+        """
+        Constructs the binary tree structure representing the game's dialogue and choices.
+
+        Returns:
+            TreeNode: The root node of the binary tree.
+        """
         # Layer 4 node (clear node)
         l4_1 = TreeNode(
             "",
@@ -173,8 +186,9 @@ class DatingSimulator(tk.Tk):
 
 
     def setup_title_screen(self):
-        print("setup_title_screen called")  # Debugging (Checking whether the function is called)
-
+        """
+        Sets up the title screen interface with options to start the game or exit.
+        """
         for widget in self.title_frame.winfo_children():
             widget.destroy()
         self.title_frame.pack_forget()
@@ -205,16 +219,25 @@ class DatingSimulator(tk.Tk):
 
 
     def exit_game(self):
+        """
+        Closes the game window and exits the application.
+        """
         # Exit the window
         self.destroy()
 
     def blink(self):
+        """
+        Creates a blinking effect for the title label to enhance the title screen's visuals.
+        """
         current_color = self.title_label.cget("fg")  # Access `fg` of the label, not the frame
         next_color = "pink" if current_color == "light salmon" else "light salmon"  # Toggle color
         self.title_label.config(fg=next_color)
         self.title_label.after(200, self.blink)  # Call blink() again after 500ms
 
     def credits_scene(self):
+        """
+        Displays the end credits of the game and transitions back to the title screen.
+        """
     # Clear the display_outcome screen
         for widget in self.game_frame.winfo_children():
             widget.pack_forget()  # Remove all widgets from the game frame
@@ -291,6 +314,9 @@ Thank you for playing :)
         scroll_text()  # Start scrolling
 
     def setup_game_screen(self):
+        """
+        Sets up the game interface, including widgets for images, text, and choice buttons.
+        """
         # Game interface widgets
         self.image_label = tk.Label(self.game_frame)
         self.image_label.pack(pady=10)
@@ -305,6 +331,10 @@ Thank you for playing :)
         self.choice2_button.pack(side=tk.RIGHT, expand=1, pady=10)
 
     def start_game(self):
+        """
+        Starts the game by clearing the title screen, resetting game state,
+        and displaying the first scenario.
+        """
         # Clear the title screen
         for widget in self.title_frame.winfo_children():
             widget.destroy()
@@ -324,14 +354,28 @@ Thank you for playing :)
         self.update_display()  # Display the first scenario
 
     def make_choice1(self):
+        """
+        Handles the player's selection of the first choice, updating the attraction score
+        and navigating to the next node.
+        """
         self.attraction_score += self.current_node.points_left
         self.navigate(self.current_node.left)
 
     def make_choice2(self):
+        """
+        Handles the player's selection of the second choice, updating the attraction score
+        and navigating to the next node.
+        """
         self.attraction_score += self.current_node.points_right
         self.navigate(self.current_node.right)
 
     def navigate(self, next_node):
+        """
+        Navigates to the given node in the binary tree or displays the outcome if no node exists.
+
+        Args:
+            next_node (TreeNode): The next node to navigate to.
+        """
         if next_node:
             self.current_node = next_node
             self.update_display()
@@ -339,6 +383,10 @@ Thank you for playing :)
             self.display_outcome()
 
     def update_display(self):
+        """
+        Updates the game interface to display the current scenario, including text, image,
+        and available choices.
+        """
         # Update the text for the current question
         self.text_label.config(text=self.current_node.text)
 
@@ -356,7 +404,9 @@ Thank you for playing :)
             self.choice2_button.config(text=self.current_node.option_text2, wraplength= 400)
 
     def display_outcome(self):
-
+        """ 
+        Displays the final outcome of the game based on the player's attraction score.
+        """
         if self.attraction_score >= 4 :
             ending_text = "Congratulations! Kai Siang is your girlfriend now!!!"
             image_path = "./images/result_1.png"
@@ -389,6 +439,7 @@ Thank you for playing :)
         next_button = tk.Button(button_frame, text="Next", font=("Helvetica", 14, "bold"),
                              command=self.credits_scene, bg="bisque", fg="light salmon")
         next_button.pack(pady=10)
+    
     def run(self):
         self.window.mainloop()
 
